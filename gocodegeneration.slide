@@ -1,0 +1,43 @@
+Code Generation in Go
+Underappreciated tools in the core
+19 Aug 2014
+Tags: #golang
+
+Alexander Surma
+GDG Berlin Golang
+surma@surmair.de
+http://surma-slides.github.io/gocodegeneration
+@surmair
+
+* Gophers know Go
+
+… and they always have!
+
+- `gofmt` is written in Go
+- `godoc` is written in Go
+- `gofix` (remember?) was written in Go
+- in Go 1.4, the compiler will be written in Go
+
+all of these use the `go/*` packages.
+
+* BSc Computer Sciences – EBNF and ASTs
+
+.iframe http://golang.org/ref/spec#Struct_types 220 800
+
+Intermezzo: Semicolons
+
+.iframe http://golang.org/ref/spec#Blocks 160 800
+
+* Example
+
+.code ast.go /STRUCT START OMIT/,/STRUCT END OMIT/
+
+turns into
+
+# Compiled ast.dot with http://graphviz-dev.appspot.com/
+.image ast.png 380 550
+
+* Example (cont'd)
+
+.iframe http://godoc.org/go/ast#StructType 160 800
+

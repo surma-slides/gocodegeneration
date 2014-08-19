@@ -1,0 +1,53 @@
+digraph g{
+  StructType -> LitStruct;
+  StructType -> LitLBrace;
+  StructType -> FieldDecl1;
+  StructType -> LitSemi1;
+  StructType -> FieldDecl2;
+  StructType -> LitSemi2;
+  StructType -> LitRBrace;
+
+  FieldDecl1 -> IdentifierList;
+  FieldDecl1 -> Type;
+  FieldDecl1 -> Tag;
+
+  FieldDecl2 -> AnonymousField;
+
+  IdentifierList -> identifier11;
+  Type -> TypeName1;
+  TypeName1 -> identifier12;
+  Tag -> StringLit;
+
+  AnonymousField -> TypeName2;
+  TypeName2 -> QualifiedIdentifier;
+  QualifiedIdentifier -> PackageName;
+  QualifiedIdentifier -> LitDot;
+  QualifiedIdentifier -> identifier22;
+
+  PackageName -> identifier21;
+
+  StructType [label="StructType"];
+  LitStruct [label="Literal\n'struct'"];
+  LitLBrace [label="Literal\n'{'"];
+  LitRBrace [label="Literal\n'}'"];
+  LitSemi1 [label="Literal\n';'"];
+  LitSemi2 [label="Literal\n';'"];
+  FieldDecl1 [label="FieldDecl"];
+  FieldDecl2 [label="FieldDecl"];
+
+  IdentifierList [label="IdentifierList"];
+  identifier11 [label="identifier\n'FieldA'"];
+  Type [label="Type"];
+  TypeName1 [label="TypeName"];
+  identifier12 [label="identifier\n'int'"];
+  Tag [label="Tag"];
+  StringLit [label="StringLit\n'json:...'"];
+
+  AnonymousField [label="AnonymousField"];
+  TypeName2 [label="TypeName"];
+  QualifiedIdentifier [label="QualifiedIdentifier"];
+  PackageName [label="PackageName"];
+  identifier21 [label="identifier\n'fmt'"];
+  LitDot [label="Literal\n'.'"];
+  identifier22 [label="identifier\n'Stringer'"];
+}
