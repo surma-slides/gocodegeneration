@@ -37,7 +37,36 @@ turns into
 # Compiled ast.dot with http://graphviz-dev.appspot.com/
 .image ast.png 380 550
 
-* Example (cont'd)
+* Example (cont’d)
 
-.iframe http://godoc.org/go/ast#StructType 160 800
+.code ast.go /CODE START OMIT/,/CODE END OMIT/
+
+#* Example (cont’d)
+
+.play ast.go /PARSE START OMIT/,/PARSE END OMIT/
+
+* You won’t see this title
+
+.iframe http://godoc.org/go/ast#File 250 800
+.iframe http://godoc.org/go/ast#GenDecl 210 800
+.iframe http://godoc.org/go/ast#TypeSpec 170 800
+
+* GENERICS!!!!11
+
+* The dream
+
+.play -edit generics.go /GENERIC CODE START OMIT/,/GENERIC CODE END OMIT/
+
+* The “implementation” – quick’n’dirty
+
+.code generics.go /PARSE START OMIT/,/PARSE END OMIT/
+.code generics.go /VISITOR START OMIT/,/VISITOR END OMIT/
+
+  ... unimportant details ...
+
+.code generics.go /TEMPLATE RENDERING START OMIT/,/TEMPLATE RENDERING END OMIT/
+
+* The “implementation” (cont’d)
+
+.code generics.go /TEMPLATE START OMIT/,/TEMPLATE END OMIT/
 
