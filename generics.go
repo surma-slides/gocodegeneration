@@ -10,6 +10,8 @@ import (
 	"os"
 	"strings"
 	"text/template"
+
+	"code.google.com/p/go.tools/go/types"
 )
 
 type VisitFunc func(node ast.Node) ast.Visitor
@@ -43,9 +45,11 @@ func main() {
 	// GENERIC CODE END OMIT
 }`
 
+var fset *token.FileSet
+
 // PARSE START OMIT
 func main() {
-	fset := token.NewFileSet()
+	fset = token.NewFileSet()
 	f, _ := parser.ParseFile(fset, "src.go", src, 0)
 	ast.Walk(VisitFunc(PrintVisitor), f)
 }
@@ -120,9 +124,8 @@ func typestring(x interface{}) string {
 	case *ast.AssignStmt:
 		return typestring(x.Rhs[0])
 	case *ast.CompositeLit:
-		return typestring(x.Type)
-	case *ast.ArrayType:
-		return "[]" + typestring(x.Elt)
+		t, _, _ := types.EvalNode(fset, x.Type, nil, nil)
+		return t.String()
 	case *ast.Ident:
 		if x.Obj == nil {
 			return x.Name

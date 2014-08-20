@@ -72,6 +72,15 @@ Pattern: _<template name>_<suffix>(Param1, Param2, …)
 
 .code generics.go /TEMPLATE START OMIT/,/TEMPLATE END OMIT/
 
+* Intermezzo: go.tools
+
+.link http://code.google.com/p/go.tools
+
+- go/types, go/types/typesutil
+- go/callgraph
+- playground, present, godoc, cover
+- dashboard/builder
+
 * Drawbacks
 
 - No access to comments except for documentation
