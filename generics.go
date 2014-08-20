@@ -1,3 +1,4 @@
+// +build ignore
 package main
 
 import (
@@ -42,13 +43,14 @@ func main() {
 	// GENERIC CODE END OMIT
 }`
 
+// PARSE START OMIT
 func main() {
-	// PARSE START OMIT
 	fset := token.NewFileSet()
 	f, _ := parser.ParseFile(fset, "src.go", src, 0)
 	ast.Walk(VisitFunc(PrintVisitor), f)
-	// PARSE END OMIT
 }
+
+// PARSE END OMIT
 
 var lastNode ast.Node
 

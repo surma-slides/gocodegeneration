@@ -55,6 +55,8 @@ turns into
 
 * The dream
 
+Pattern: _<template name>_<suffix>(Param1, Param2, …)
+
 .play -edit generics.go /GENERIC CODE START OMIT/,/GENERIC CODE END OMIT/
 
 * The “implementation” – quick’n’dirty
@@ -62,11 +64,89 @@ turns into
 .code generics.go /PARSE START OMIT/,/PARSE END OMIT/
 .code generics.go /VISITOR START OMIT/,/VISITOR END OMIT/
 
-  ... unimportant details ...
+  ... string splitting, template lookup ...
 
 .code generics.go /TEMPLATE RENDERING START OMIT/,/TEMPLATE RENDERING END OMIT/
 
 * The “implementation” (cont’d)
 
 .code generics.go /TEMPLATE START OMIT/,/TEMPLATE END OMIT/
+
+* Drawbacks
+
+- No access to comments except for documentation
+- Syntax not extensible
+- Additional build step
+- `go get`-ability vs. orthogonality
+
+* Case Study: gen
+
+“gen is an attempt to bring some generics-like functionality to Go, with inspiration from C#’s Linq, JavaScript’s Array methods and the underscore library.”
+
+In contrast to my approach, generics are applied to types instead of functions.
+
+- Feels more idiomatic
+- Feels more robust
+- Sovles 99% of the use cases
+
+.link http://clipperhouse.github.io/gen/
+
+* Case Study: gen (cont’d)
+
+.code gen_input.go /GEN SIMPLE START OMIT/,/GEN SIMPLE END OMIT/
+
+  $ gen
+
+.code sometype_gen.go /PLURAL START OMIT/,/PLURAL END OMIT/
+.code sometype_gen.go /ALL START OMIT/,/ALL END OMIT/
+.code sometype_gen.go /ANY START OMIT/,/ANY END OMIT/
+.code sometype_gen.go /DISTINCT START OMIT/,/DISTINCT END OMIT/
+.code sometype_gen.go /EACH START OMIT/,/EACH END OMIT/
+
+\... Where, Count, First, Single, Sort, SortBy, DistinctBy, Min, MinBy, Max, MaxBy
+
+
+* Case Study: gen (cont’d)
+
+.code gen_input.go /GEN POINTER START OMIT/,/GEN POINTER END OMIT/
+
+will result in
+
+.code anothertype_gen.go /PLURAL START OMIT/,/PLURAL END OMIT/
+.code anothertype_gen.go /ALL START OMIT/,/ALL END OMIT/
+
+To only generate a subset of methods
+
+.code gen_input.go /GEN METHODS START OMIT/,/GEN METHODS END OMIT/
+
+* Case Study: gen (cont’d) – Projections
+
+.code gen_input.go /GEN PROJECTIONS START OMIT/,/GEN PROJECTIONS END OMIT/
+
+  $ gen
+
+.code differenttype_gen.go /AVERAGE START OMIT/,/AVERAGE END OMIT/
+.code differenttype_gen.go /GROUPBY START OMIT/,/GROUPBY END OMIT/
+
+\... Select, Sum, Max, Min, Aggregate
+
+* Case Study: gen (cont’d) – Containers
+
+.code gen_input.go /GEN CONTAINERS START OMIT/,/GEN CONTAINERS END OMIT/
+
+  $ gen
+
+See `containers/{ring,list}`, just add type-safety.
+
+* Case Study: gen (cont’d) – Extensibility
+
+You can import and use your own generators by creating a `_gen.go`.
+
+.code foowriter.go /INIT START OMIT/,/INIT END OMIT/
+
+.iframe http://godoc.org/github.com/clipperhouse/gen/typewriter#TypeWriter 300 800
+
+* Case Study: gen (cont’d) – Extensibility
+
+.code gen_templates.go /ALL TEMPLATE START OMIT/,/ALL TEMPLATE END OMIT/
 
