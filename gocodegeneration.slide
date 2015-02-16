@@ -16,7 +16,7 @@ http://github.com/surma-slides/gocodegeneration
 - `gofmt` is written in Go
 - `godoc` is written in Go
 - `gofix` (remember?) was written in Go
-- in Go 1.4, the compiler will be written in Go
+- in Go 1.5, the compiler will be “written” in Go
 
 all of these use the `go/*` packages.
 
@@ -45,7 +45,7 @@ turns into
 
 .play ast.go /PARSE START OMIT/,/PARSE END OMIT/
 
-* You won’t see this title
+*
 
 .iframe http://godoc.org/go/ast#File 250 800
 .iframe http://godoc.org/go/ast#GenDecl 210 800
@@ -72,21 +72,20 @@ Pattern: _<template name>_<suffix>(Param1, Param2, …)
 
 .code generics.go /TEMPLATE START OMIT/,/TEMPLATE END OMIT/
 
-* Intermezzo: go.tools
+* Intermezzo: Tools package
 
-.link http://code.google.com/p/go.tools
+.link golang.org/x/tools
 
 - go/types, go/types/typesutil
 - go/callgraph
-- playground, present, godoc, cover
-- dashboard/builder
+- cmd/playground, cmd/present, cmd/godoc, cmd/cover
 
 * Drawbacks
 
 - No access to comments except for documentation
 - Syntax not extensible
 - Additional build step
-- `go get`-ability vs. orthogonality
+- (`go get`-ability vs. orthogonality)
 
 * Case Study: gen
 
@@ -153,9 +152,8 @@ You can import and use your own generators by creating a `_gen.go`.
 
 .code foowriter.go /INIT START OMIT/,/INIT END OMIT/
 
-.iframe http://godoc.org/github.com/clipperhouse/gen/typewriter#TypeWriter 300 800
+.iframe http://godoc.org/github.com/clipperhouse/typewriter#Interface 230 800
 
 * Case Study: gen (cont’d) – Extensibility
 
 .code gen_templates.go /ALL TEMPLATE START OMIT/,/ALL TEMPLATE END OMIT/
-

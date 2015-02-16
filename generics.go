@@ -11,7 +11,7 @@ import (
 	"strings"
 	"text/template"
 
-	"code.google.com/p/go.tools/go/types"
+	"golang.org/x/tools/go/types"
 )
 
 type VisitFunc func(node ast.Node) ast.Visitor
@@ -124,8 +124,8 @@ func typestring(x interface{}) string {
 	case *ast.AssignStmt:
 		return typestring(x.Rhs[0])
 	case *ast.CompositeLit:
-		t, _, _ := types.EvalNode(fset, x.Type, nil, nil)
-		return t.String()
+		t, _ := types.EvalNode(fset, x.Type, nil, nil)
+		return t.Type.String()
 	case *ast.Ident:
 		if x.Obj == nil {
 			return x.Name
